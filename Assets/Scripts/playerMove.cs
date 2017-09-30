@@ -20,23 +20,23 @@ public class playerMove : MonoBehaviour {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
+        //transform.position = new Vector2(this.transform.position.x , this.transform.position.y);
+
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-        //this.GetComponent<Rigidbody2D>();
 
 
         rBody.velocity = movement * speed;
         #endregion
-        /*
+        
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            this.transform.Rotate(Vector3.forward * -90);
+            this.transform.Rotate(0f, 0f, -90);
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            this.transform.Rotate(Vector3.forward * 90);
+            this.transform.Rotate(0f, 0f, 90);
 
         }
-        */
 
 
     }
