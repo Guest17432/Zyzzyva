@@ -49,6 +49,7 @@ public class playerMove : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             this.transform.Rotate(Vector3.forward * 90);
+            
         }
 
     }
