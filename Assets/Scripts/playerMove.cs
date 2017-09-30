@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerMove : MonoBehaviour {
 
     public float speed;
+    private string direction = "up";
     
     Rigidbody2D rBody;
 
@@ -15,33 +16,17 @@ public class playerMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float moveHorizontal = 0;
-        float moveVertical = 0;
-
         #region Move
-        if (Input.GetKey(KeyCode.W))
-        {
-            moveVertical = speed;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            moveVertical = speed * -1;
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            moveHorizontal = speed;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            moveHorizontal = speed * -1;
-        }
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+        //this.GetComponent<Rigidbody2D>();
+
 
         rBody.velocity = movement * speed;
         #endregion
-
+        /*
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             this.transform.Rotate(Vector3.forward * -90);
@@ -49,8 +34,10 @@ public class playerMove : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             this.transform.Rotate(Vector3.forward * 90);
-            
+
         }
+        */
+
 
     }
 }
