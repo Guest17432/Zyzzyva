@@ -7,7 +7,9 @@ public class playerMove : MonoBehaviour {
     public float speed;
     private int state;
     private string direction = "up";
+    private bool touching = false;
     
+
     Rigidbody2D rBody;
 
     // Use this for initialization
@@ -19,17 +21,20 @@ public class playerMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         #region Move
+
+        
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
         //transform.position = new Vector2(this.transform.position.x , this.transform.position.y);
-
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
 
+        
 
         rBody.velocity = movement * speed;
         #endregion
 
+        
         #region rotation
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -109,8 +114,18 @@ public class playerMove : MonoBehaviour {
             state = 3;
         }
         #endregion
-        
-
 
     }
+    
+        void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.tag == "Solid")
+        {
+            
+            
+            Debug.Log("You hit a thing!");
+        }
+    }
+    
+
 }
