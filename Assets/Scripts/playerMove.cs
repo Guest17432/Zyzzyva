@@ -5,6 +5,7 @@ using UnityEngine;
 public class playerMove : MonoBehaviour {
 
     public float speed;
+    private int state;
     private string direction = "up";
     
     Rigidbody2D rBody;
@@ -12,6 +13,7 @@ public class playerMove : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rBody = this.GetComponent<Rigidbody2D>();
+        state = 0;
     }
 	
 	// Update is called once per frame
@@ -27,16 +29,87 @@ public class playerMove : MonoBehaviour {
 
         rBody.velocity = movement * speed;
         #endregion
-        
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+
+        #region rotation
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            this.transform.Rotate(0f, 0f, -90);
+            if (state == 1)
+            {
+                //if facing downwards
+                this.transform.Rotate(0f, 0f, -180);
+            }
+            if (state == 2)
+            {
+                //if facing to the left
+                this.transform.Rotate(0f, 0f, -90);
+            }
+            if (state == 3)
+            {
+                //if facing to the right
+                this.transform.Rotate(0f, 0f, 90);
+            }
+            state = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (state == 0)
+            {
+                //if facing upwards
+                this.transform.Rotate(0f, 0f, 180);
+            }
+            if (state == 2)
+            {
+                //if facing to the left
+                this.transform.Rotate(0f, 0f, 90);
+            }
+            if (state == 3)
+            {
+                //if facing to the right
+                this.transform.Rotate(0f, 0f, -90);
+            }
+            state = 1;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            this.transform.Rotate(0f, 0f, 90);
-
+            if (state == 0)
+            {
+                //if facing upwards
+                this.transform.Rotate(0f, 0f, 90);
+            }
+            if (state == 1)
+            {
+                //if facing downwards
+                this.transform.Rotate(0f, 0f, -90);
+            }
+            if (state == 3)
+            {
+                //if facing to the right
+                this.transform.Rotate(0f, 0f, 180);
+            }
+            state = 2;
         }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (state == 0)
+            {
+                //if facing upwards
+                this.transform.Rotate(0f, 0f, -90);
+            }
+            if (state == 1)
+            {
+                //if facing downwards
+                this.transform.Rotate(0f, 0f, 90);
+            }
+            if (state == 2)
+            {
+                //if facing to the left
+                this.transform.Rotate(0f, 0f, 180);
+            }
+            state = 3;
+        }
+        #endregion
+        
 
 
     }
